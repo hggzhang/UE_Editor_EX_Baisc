@@ -1,0 +1,6 @@
+
+
+
+#include "UMyAssetDefinition.h"
+
+
