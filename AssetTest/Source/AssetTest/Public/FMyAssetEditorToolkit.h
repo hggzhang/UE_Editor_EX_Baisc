@@ -10,22 +10,42 @@
 class ASSETTEST_API FMyAssetEditorToolkit : public FAssetEditorToolkit
 {
 public:
-	// 必须实现的接口
 	virtual FName GetToolkitFName() const override { return FName("MyAssetsEditorToolkit"); }
-	virtual FText GetBaseToolkitName() const override { return NSLOCTEXT("EditorExtension", "My Asset Toolkit Name", "我的资产编辑器"); }
-	virtual FString GetWorldCentricTabPrefix() const override { return NSLOCTEXT("EditorExtension", "My Asset Toolkit Tab Prefix", "我的资产").ToString(); }
+	virtual FText GetBaseToolkitName() const override { return NSLOCTEXT("EditorExtension", "My Asset Toolkit Name", "MyAssetEditor"); }
+	virtual FString GetWorldCentricTabPrefix() const override { return NSLOCTEXT("EditorExtension", "My Asset Toolkit Tab Prefix", "MyAsset").ToString(); }
 	virtual FLinearColor GetWorldCentricTabColorScale() const override { return FLinearColor::Green; }
 
 public:
+	// register and unregister tab spawners for the asset editor
 	virtual void RegisterTabSpawners(const TSharedRef<FTabManager>& InTabManager) override;
 	virtual void UnregisterTabSpawners(const TSharedRef<FTabManager>& InTabManager) override;
 
-	// 这个函数并不是虚函数，也不含有模式匹配，为公开函数被外部调用
+	// Initializes the asset editor with the provided mode, host, and asset.
 	void InitializeAssetEditor(const EToolkitMode::Type Mode, const TSharedPtr<IToolkitHost>& InitToolkitHost, UObject* InAssets);
+private:
+
+	TSharedPtr<IDetailsView> DetailsView;
+	// Spawns the detail and graph editor tabs for the asset editor
+	TSharedRef<SDockTab> SpawnDetailTab(const FSpawnTabArgs& SpawnTabArgs);
+	TSharedRef<SDockTab> SpawnGraphEditorTab(const FSpawnTabArgs& SpawnTabArgs);
 
 private:
 
-	// 生成细节面板
-	TSharedRef<SDockTab> SpawnDetailTab(const FSpawnTabArgs& SpawnTabArgs) const;
-	TObjectPtr<UEdGraph> EdGraph;
+	TSharedPtr<SGraphEditor> GraphEditor;
+
+	TSharedPtr<FUICommandList> MyCommandList;
+
+	TSharedPtr<TSet<UObject*>> SelectedNodesLastTime{};
+
+	void OnSelectedNodesChanged(const TSet<UObject*>& NewSelection) const;
+
+	void CopySelectedNodes();
+
+	void DeleteSelectedNode();
+
+	void CutSelectedNodes();
+
+	void DeleteSelectedDuplicatableNodes();
+
+	void PasteNodes();
 };

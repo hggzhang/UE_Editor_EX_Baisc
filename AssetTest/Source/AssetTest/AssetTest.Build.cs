@@ -26,7 +26,6 @@ public class AssetTest : ModuleRules
 			new string[]
 			{
 				"Core",
-                "UnrealEd",
 				// ... add other public dependencies that you statically link with here ...
 			}
             );
@@ -35,15 +34,32 @@ public class AssetTest : ModuleRules
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"CoreUObject",
+                "Core",
+				"UnrealEd",
+                "CoreUObject",
 				"Engine",
 				"Slate",
 				"SlateCore",
-                "AssetTools",
-                "AssetDefinition",
+				"AssetTools",
+				"AssetDefinition",
+				"ToolMenus",
+				"BlueprintEditorLibrary",
+				"Projects",
+				"ApplicationCore",
+				"GraphEditor",
+                "WindowsPlatformEditor",
+
+                //"EditorStyle",
+                //"PropertyEditor",
+                //"DesktopPlatform",
+                //"Kismet",
+                //"ToolWidgets",
+                //"EditorWidgets",
+                //"AdvancedPreviewScene",
+                //"ContentBrowser",
 				// ... add private dependencies that you statically link with here ...	
 			}
-			);
+            );
 		
 		
 		DynamicallyLoadedModuleNames.AddRange(

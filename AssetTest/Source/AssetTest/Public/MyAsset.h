@@ -16,6 +16,7 @@ class ASSETTEST_API UMyAsset : public UObject
 	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MyAsset") FName AssetsName;
-	
-	
+
+	UPROPERTY()
+	UEdGraph* EdGraph = nullptr;
 };

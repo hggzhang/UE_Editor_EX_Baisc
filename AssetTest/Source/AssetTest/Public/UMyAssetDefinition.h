@@ -17,12 +17,12 @@ public:
         IncludeClassInFilter = EIncludeClassInFilter::Always;
     };
 
-    // 必须实现的基本方法
+    
     virtual FText GetAssetDisplayName() const override { return NSLOCTEXT("Editor", "MyAssets", "MyAsset2"); }
     virtual FLinearColor GetAssetColor() const override { return FLinearColor::Green; }
     virtual TSoftClassPtr<UObject> GetAssetClass() const override { return UMyAsset2::StaticClass(); }
-    ;
-    //virtual bool CanRegisterStatically() const { return true; }
+    
+	// The categories in which this asset will be displayed in the content browser
     virtual TConstArrayView<FAssetCategoryPath> GetAssetCategories() const override
     {
         static const TArray<FAssetCategoryPath> Categories = {

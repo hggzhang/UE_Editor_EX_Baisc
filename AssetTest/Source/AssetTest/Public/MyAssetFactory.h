@@ -19,4 +19,7 @@ class ASSETTEST_API UMyAssetFactory : public UFactory
 	virtual bool CanCreateNew() const override;
 	virtual bool ShouldShowInNewMenu() const override;
 	virtual UObject* FactoryCreateNew(UClass* InClass, UObject* InParent, FName InName, EObjectFlags Flags, UObject* Context, FFeedbackContext* Warn) override;
+	
+	// Creates a debug node in the specified parent graph at the given location.
+	UEdGraphNode* CreateMyNode(UEdGraph* ParentGraph, const FVector2D NodeLocation) const;
 };
