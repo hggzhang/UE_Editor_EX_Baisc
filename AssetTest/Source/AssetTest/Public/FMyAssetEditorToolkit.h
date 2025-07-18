@@ -32,20 +32,14 @@ private:
 private:
 
 	TSharedPtr<SGraphEditor> GraphEditor;
-
 	TSharedPtr<FUICommandList> MyCommandList;
-
 	TSharedPtr<TSet<UObject*>> SelectedNodesLastTime{};
 
+	// Handles node actions in the graph editor
 	void OnSelectedNodesChanged(const TSet<UObject*>& NewSelection) const;
-
 	void CopySelectedNodes();
-
 	void DeleteSelectedNode();
-
 	void CutSelectedNodes();
-
 	void DeleteSelectedDuplicatableNodes();
-
 	void PasteNodes();
 };
