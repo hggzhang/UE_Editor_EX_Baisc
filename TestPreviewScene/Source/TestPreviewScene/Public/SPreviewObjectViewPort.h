@@ -28,5 +28,4 @@ public:
 	virtual void OnFocusViewportToSelection() override;
 	virtual TSharedRef<FEditorViewportClient> MakeEditorViewportClient() override;
 	virtual TSharedPtr<SWidget> MakeViewportToolbar() override;
-	/** End SViewport Interface */
 };

@@ -6,12 +6,15 @@
 FPreviewObjectEditorViewportClient::FPreviewObjectEditorViewportClient(FEditorModeTools* InModeTools,
 	FPreviewScene* InPreviewScene, const TWeakPtr<SEditorViewport>& InEditorViewportWidget) : FEditorViewportClient(InModeTools, InPreviewScene, InEditorViewportWidget)
 {
+	// refresh the viewport real-time state
 	SetRealtime(true);
 }
 
 void FPreviewObjectEditorViewportClient::SetEditingObject(UPreviewObject* PreviewObject)
 {
 	EditingPreviewObject = PreviewObject;
+
+	// Bind the asset changed event to update the viewport when the asset changes
 	EditingPreviewObject->OnAssetPropertyChanged.BindRaw(this, &FPreviewObjectEditorViewportClient::OnAssetChanged);
 }
 
